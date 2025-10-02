@@ -1,184 +1,31 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>📻 Lorito's Music</title>
-  <style>
-    body {
-      background: #000;
-      color: #fff;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      text-align: center;
-      padding: 20px;
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-image: radial-gradient(circle, #222 1px, transparent 1px);
-      background-size: 20px 20px;
-      position: relative;
-    }
 
-    .bg-logo {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      opacity: 0.15;
-      z-index: -1;
-    }
+<!-- Seção de apoio -->
+<div style="margin-top: 30px; padding: 20px; background: rgba(0,0,0,0.8); border-radius: 12px; text-align: center;">
+  <h3>❤️ Apoie a Lorito's Music</h3>
+  <p>Ajude a manter o site no ar — qualquer valor é bem-vindo!</p>
 
-    .radio-app {
-      max-width: 600px;
-      margin: auto;
-      background: rgba(10, 10, 10, 0.9);
-      padding: 25px;
-      border-radius: 16px;
-      box-shadow: 0 0 30px rgba(255, 0, 0, 0.2);
-      border: 1px solid #333;
-      position: relative;
-      z-index: 10;
-    }
+  <!-- QR Code real -->
+  <img src="pix-qrcode.png" alt="QR Code PIX" style="max-width: 100%; margin: 15px auto; border: 3px solid #fff; border-radius: 8px;" />
 
-    h1 {
-      font-size: 2.4em;
-      margin-bottom: 12px;
-      color: #ff3333;
-      text-shadow: 0 0 10px rgba(255, 50, 50, 0.7);
-      letter-spacing: 1px;
-    }
-
-    p {
-      font-size: 1.1em;
-      margin-bottom: 20px;
-      color: #ccc;
-    }
-
-    .station {
-      background: #1a1a1a;
-      margin: 10px 0;
-      padding: 14px;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      font-weight: bold;
-      border: 1px solid #333;
-    }
-
-    .station:hover {
-      background: #2a2a2a;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-      border-color: #ff4444;
-    }
-
-    audio {
-      width: 100%;
-      margin-top: 20px;
-      border-radius: 8px;
-      background: #000;
-      padding: 8px;
-    }
-
-    #ytPlayer {
-      margin-top: 20px;
-    }
-
-    iframe {
-      border-radius: 10px;
-      width: 100%;
-      height: 180px;
-      border: none;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
-    }
-  </style>
-</head>
-<body>
-
-<!-- Fundo estilizado com SVG inline -->
-<div class="bg-logo">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
-    <!-- Fone de ouvido -->
-    <path d="M80,30 C60,30 40,50 40,70 L40,130 C40,150 60,170 80,170 L120,170 C140,170 160,150 160,130 L160,70 C160,50 140,30 120,30 Z" fill="#cc0000" stroke="#fff" stroke-width="2"/>
-    <!-- Nota musical -->
-    <path d="M100,60 L100,140 M100,140 Q120,130 120,110 Q120,90 100,80" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
-    <!-- Caixa de som -->
-    <rect x="110" y="90" width="40" height="40" rx="5" fill="#cc0000" stroke="#fff" stroke-width="2"/>
-    <circle cx="120" cy="100" r="5" fill="#fff"/>
-    <circle cx="130" cy="120" r="8" fill="#fff"/>
-    <!-- Ondas sonoras -->
-    <path d="M160,100 Q170,90 180,100" fill="none" stroke="#cc0000" stroke-width="3" stroke-linecap="round"/>
-    <path d="M160,100 Q175,85 190,100" fill="none" stroke="#cc0000" stroke-width="3" stroke-linecap="round"/>
-    <!-- Texto "LORITO'S MUSIC" -->
-    <text x="100" y="185" font-family="Arial" font-size="12" fill="#fff" text-anchor="middle">LORITO'S MUSIC</text>
-  </svg>
-</div>
-
-<div class="radio-app">
-  <h1>📻 LORITO'S MUSIC</h1>
-  <p>Escolha uma estação para ouvir ao vivo:</p>
-
-  <div class="station" onclick="playStation('http://hestia2.cdnstream.com:80/1078_128')">
-    🎧 Hestia
+  <!-- Chave PIX e E-mail -->
+  <div style="margin: 15px 0; font-size: 0.9em; color: #ccc;">
+    <strong>Chave PIX:</strong> <code>1c814ae7-453e-470d-a9b4-9b26f1589d1a</code><br>
+    <strong>E-mail:</strong> <code>loritosmusic2050@gmail.com</code>
   </div>
 
-  <div class="station" onclick="playStation('https://stream.radioparadise.com/aac-320')">
-    🎶 Radio Paradise (Rock/Pop)
-  </div>
-
-  <div class="station" onclick="playStation('https://streamingv2.shoutcast.com/smoothjazz-global')">
-    🎷 Smooth Jazz Mundial
-  </div>
-
-  <div class="station" onclick="playStation('http://stream.live.vc.bbcmedia.co.uk/bbc_world_service')">
-    🌍 BBC World Service (News)
-  </div>
-
-  <div class="station" onclick="playStation('https://countrygospelradio.org/wp-content/uploads/sites/6/2023/03/Country-Gospel-mp3.mp3')">
-    🎤 Moody Southern Gospel Radio
-  </div>
-
-  <div class="station" onclick="playStation('https://streams3.vision.org.au/VK-64k.mp3')">
-    👶 Vision Kids
-  </div>
-
-  <div class="station" onclick="playYouTube('P4psbhpkLto')">
-    🎵 Acaville Radio (YouTube)
-  </div>
-
-  <div class="station" onclick="playYouTube('nkP44rNTgxQ')">
-    🎶 A Cappella Radio (YouTube)
-  </div>
-
-  <audio id="radioPlayer" controls></audio>
-  <div id="ytPlayer"></div>
+  <!-- Botão de copiar chave -->
+  <button onclick="copyPix()" style="background: #ff3333; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: bold;">
+    Copiar Chave PIX
+  </button>
 </div>
 
 <script>
-function playStation(url) {
-  const player = document.getElementById("radioPlayer");
-  const cleanUrl = url.trim();
-  player.src = cleanUrl;
-  player.play().catch(e => {
-    console.warn("Autoplay bloqueado pelo navegador. Clique manualmente no play.");
+function copyPix() {
+  const key = "1c814ae7-453e-470d-a9b4-9b26f1589d1a";
+  navigator.clipboard.writeText(key).then(() => {
+    alert("Chave PIX copiada!");
+  }).catch(err => {
+    alert("Erro ao copiar: " + err);
   });
-  document.getElementById("ytPlayer").innerHTML = "";
-}
-
-function playYouTube(videoId) {
-  document.getElementById("radioPlayer").src = "";
-  document.getElementById("ytPlayer").innerHTML = `
-    <iframe 
-      src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1" 
-      allow="autoplay; encrypted-media" 
-      allowfullscreen>
-    </iframe>`;
 }
 </script>
-
-</body>
-</html>
