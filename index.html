@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>📻 Lorito's Music</title>
+  <style>
+    body {
+      background: url('https://i.imgur.com/9Q3sXJp.png') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      padding: 20px;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .radio-app {
+      max-width: 600px;
+      margin: auto;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    h1 {
+      font-size: 2.2em;
+      margin-bottom: 10px;
+      color: #ff4d4d;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+
+    p {
+      font-size: 1.1em;
+      margin-bottom: 20px;
+      color: #ddd;
+    }
+
+    .station {
+      background: #222;
+      margin: 8px;
+      padding: 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+
+    .station:hover {
+      background: #444;
+      transform: scale(1.02);
+      box-shadow: 0 0 15px rgba(255, 77, 77, 0.3);
+    }
+
+    audio {
+      width: 100%;
+      margin-top: 20px;
+      border-radius: 8px;
+      background: #111;
+    }
+
+    #ytPlayer {
+      margin-top: 15px;
+    }
+
+    iframe {
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    }
+  </style>
+</head>
+<body>
+
+<div class="radio-app">
+  <h1>📻 Lorito's Music</h1>
+  <p>Escolha uma estação para ouvir ao vivo:</p>
+
+  <div class="station" onclick="playStation('http://hestia2.cdnstream.com:80/1078_128')">
+    🎧 Hestia
+  </div>
+
+  <div class="station" onclick="playStation('https://stream.radioparadise.com/aac-320')">
+    🎶 Radio Paradise (Rock/Pop)
+  </div>
+
+  <div class="station" onclick="playStation('https://streamingv2.shoutcast.com/smoothjazz-global')">
+    🎷 Smooth Jazz Mundial
+  </div>
+
+  <div class="station" onclick="playStation('http://stream.live.vc.bbcmedia.co.uk/bbc_world_service')">
+    🌍 BBC World Service (News)
+  </div>
+
+  <div class="station" onclick="playStation('https://countrygospelradio.org/wp-content/uploads/sites/6/2023/03/Country-Gospel-mp3.mp3')">
+    🎤 Moody Southern Gospel Radio
+  </div>
+
+  <div class="station" onclick="playStation('https://streams3.vision.org.au/VK-64k.mp3')">
+    👶 Vision Kids
+  </div>
+
+  <!-- Acaville e A Cappella são do YouTube -->
+  <div class="station" onclick="playYouTube('P4psbhpkLto')">
+    🎵 Acaville Radio (YouTube)
+  </div>
+
+  <div class="station" onclick="playYouTube('nkP44rNTgxQ')">
+    🎶 A Cappella Radio (YouTube)
+  </div>
+
+  <!-- Player principal -->
+  <audio id="radioPlayer" controls autoplay></audio>
+  <div id="ytPlayer"></div>
+</div>
+
+<script>
+function playStation(url) {
+  let player = document.getElementById("radioPlayer");
+  player.src = url.trim(); // remove espaços extras
+  player.play();
+  document.getElementById("ytPlayer").innerHTML = ""; // remove youtube se estiver ativo
+}
+
+function playYouTube(videoId) {
+  document.getElementById("radioPlayer").src = ""; // pausa rádio
+  document.getElementById("ytPlayer").innerHTML = `
+    <iframe width="100%" height="200" 
+      src="https://www.youtube.com/embed/${videoId}?autoplay=1" 
+      frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+    </iframe>`;
+}
+</script>
+
+</body>
+</html>
