@@ -6,79 +6,87 @@
   <title>📻 Lorito's Music</title>
   <style>
     body {
-      background: url('https://i.imgur.com/9Q3sXJp.png') no-repeat center center fixed;
-      background-size: cover;
+      background: #000;
       color: #fff;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       text-align: center;
       padding: 20px;
       margin: 0;
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
+      background-image: radial-gradient(circle, #222 1px, transparent 1px);
+      background-size: 20px 20px;
     }
 
     .radio-app {
       max-width: 600px;
       margin: auto;
-      background: rgba(0, 0, 0, 0.7);
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      background: rgba(10, 10, 10, 0.85);
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 0 30px rgba(255, 0, 0, 0.2);
+      border: 1px solid #333;
     }
 
     h1 {
-      font-size: 2.2em;
-      margin-bottom: 10px;
-      color: #ff4d4d;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+      font-size: 2.4em;
+      margin-bottom: 12px;
+      color: #ff3333;
+      text-shadow: 0 0 10px rgba(255, 50, 50, 0.7);
+      letter-spacing: 1px;
     }
 
     p {
       font-size: 1.1em;
       margin-bottom: 20px;
-      color: #ddd;
+      color: #ccc;
     }
 
     .station {
-      background: #222;
-      margin: 8px;
-      padding: 12px;
-      border-radius: 8px;
+      background: #1a1a1a;
+      margin: 10px 0;
+      padding: 14px;
+      border-radius: 10px;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: all 0.25s ease;
       font-weight: bold;
-      letter-spacing: 0.5px;
+      border: 1px solid #333;
     }
 
     .station:hover {
-      background: #444;
-      transform: scale(1.02);
-      box-shadow: 0 0 15px rgba(255, 77, 77, 0.3);
+      background: #2a2a2a;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      border-color: #ff4444;
     }
 
     audio {
       width: 100%;
       margin-top: 20px;
       border-radius: 8px;
-      background: #111;
+      background: #000;
+      padding: 8px;
     }
 
     #ytPlayer {
-      margin-top: 15px;
+      margin-top: 20px;
     }
 
     iframe {
-      border-radius: 8px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      border-radius: 10px;
+      width: 100%;
+      height: 180px;
+      border: none;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
     }
   </style>
 </head>
 <body>
 
 <div class="radio-app">
-  <h1>📻 Lorito's Music</h1>
+  <h1>📻 LORITO'S MUSIC</h1>
   <p>Escolha uma estação para ouvir ao vivo:</p>
 
   <div class="station" onclick="playStation('http://hestia2.cdnstream.com:80/1078_128')">
@@ -105,7 +113,6 @@
     👶 Vision Kids
   </div>
 
-  <!-- Acaville e A Cappella são do YouTube -->
   <div class="station" onclick="playYouTube('P4psbhpkLto')">
     🎵 Acaville Radio (YouTube)
   </div>
@@ -114,29 +121,31 @@
     🎶 A Cappella Radio (YouTube)
   </div>
 
-  <!-- Player principal -->
-  <audio id="radioPlayer" controls autoplay></audio>
+  <audio id="radioPlayer" controls></audio>
   <div id="ytPlayer"></div>
 </div>
 
 <script>
 function playStation(url) {
-  let player = document.getElementById("radioPlayer");
-  player.src = url.trim(); // remove espaços extras
-  player.play();
-  document.getElementById("ytPlayer").innerHTML = ""; // remove youtube se estiver ativo
+  const player = document.getElementById("radioPlayer");
+  const cleanUrl = url.trim();
+  player.src = cleanUrl;
+  player.play().catch(e => {
+    console.warn("Autoplay bloqueado pelo navegador. Clique manualmente no play.");
+  });
+  document.getElementById("ytPlayer").innerHTML = "";
 }
 
 function playYouTube(videoId) {
-  document.getElementById("radioPlayer").src = ""; // pausa rádio
+  document.getElementById("radioPlayer").src = "";
   document.getElementById("ytPlayer").innerHTML = `
-    <iframe width="100%" height="200" 
-      src="https://www.youtube.com/embed/${videoId}?autoplay=1" 
-      frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+    <iframe 
+      src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1" 
+      allow="autoplay; encrypted-media" 
+      allowfullscreen>
     </iframe>`;
 }
 </script>
 
 </body>
 </html>
-background.jpg
